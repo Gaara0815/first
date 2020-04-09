@@ -12,15 +12,15 @@ def get_token(mobile):
     yzm = err[len(err)-4:len(err)]
     print(err)
 
-    login_url = 'http://115.236.35.106:9000/api/n/user/login/faster/sms'
-    login_data = {"mobile": mobile,"smsCode":yzm}
-    login_headers = {"Content-Type": "application/json"}
-    login_resp = requests.post(login_url, data=json.dumps(login_data), headers=login_headers)
-    # print(login_resp.text)
-    token = login_resp.json()['data']['token']
-    # print(data)
-    # token = data.json()['token']
-    # print(token)
-    return token
+    # login_url = 'http://115.236.35.106:9000/api/n/user/login/faster/sms'
+    # login_data = {"mobile": mobile,"smsCode":yzm}
+    # login_headers = {"Content-Type": "application/json"}
+    # login_resp = requests.post(login_url, data=json.dumps(login_data), headers=login_headers)
+    # # print(login_resp.text)
+    # token = login_resp.json()['data']['token']
+    # # print(data)
+    # # token = data.json()['token']
+    # # print(token)
+    # return token
 
-# get_token('13600587905')
+get_token('14444444444')
