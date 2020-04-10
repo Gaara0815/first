@@ -54,7 +54,18 @@ def get_token(mobile):
 #创建广告
 def buildAdv(mobile):
     buildAdv_url = 'http://115.236.35.106:9000/api/adv/faster/save'
-    buildAdv_data = {"needSmartRelease":1,"landingTitle":"","releaseTime":"00:00～24:00","releasePrice":2000.0,"releaseDay":"2020-04-10 开始","fasterAdvReleaseLocation":{"needVideo":1,"settleModes":[{"updatedTime":2019,"settleMode":"CPC","minPrice":1030,"cptPublication":"","createdTime":2019,"id":1290,"releaseLocationId":1,"suggestPrice":2030},{"updatedTime":2019,"settleMode":"CPM","minPrice":1000,"cptPublication":"","createdTime":2019,"id":1291,"releaseLocationId":1,"suggestPrice":10000}]},"fixedPrice":3010.0,"acquisitionMode":0,"releaseStartDay":"20200410","promoteType":1,"landingType":"0","needOptimizeMaterial":1,"dayMaxAmount":1000000.0,"settleMode":"CPC","bizId":getbizId(32),"createModel":"0","advName":"TM咖啡","releaseStartTime":"0","previewImg":"","releaseEndDay":"","directionalJson":{"locationId":1,"coverNum":"456334","timeset":["4276"],"behavior":{"behaviorSceneTitle":"App,电商,资讯","behaviorStrengthTitle":"不限","behaviorScene":["3880","3881","3882"],"behaviorStrength":["3891"],"behaviorValidityTitle":"7天","behaviorValidity":["3884"]},"exposureNum":"14562389"},"fixedPriceDayAmount":1000010.0,"fixedPriceSupport":1,"landingId":"","editUrl":"","entrustOperation":0,"needScreenshot":0,"materialImgs":[{"originalImg":"http://cdn.topjoytec.com/gBWQdYeXLqy3Sk4glLxVeg.jpg","cutImg":"http://cdn.topjoytec.com/XEyoQ5Y5ksC90LiefiAIpQ.jpg","materialSize":"640*720"}],"releaseEndTime":"24","isOuterUrl":1,"landingUrls":["ikf.kskdk"],"slogan":"还记得看到了","releaseLocationId":1}
+    buildAdv_data = {"needSmartRelease":1,"landingTitle":"","releaseTime":"00:00～24:00","releasePrice":2000.0,"releaseDay":"2020-04-10 开始",
+                     "fasterAdvReleaseLocation":{"needVideo":1,"settleModes":[{"updatedTime":2019,"settleMode":"CPC","minPrice":1030,"cptPublication":"",
+                    "createdTime":2019,"id":1290,"releaseLocationId":1,"suggestPrice":2030},{"updatedTime":2019,"settleMode":"CPM","minPrice":1000,
+                    "cptPublication":"","createdTime":2019,"id":1291,"releaseLocationId":1,"suggestPrice":10000}]},"fixedPrice":3010.0,"acquisitionMode":0,
+                     "releaseStartDay":"20200410","promoteType":1,"landingType":"0","needOptimizeMaterial":1,"dayMaxAmount":1000000.0,"settleMode":"CPC",
+                     "bizId":getbizId(32),"createModel":"0","advName":"TM咖啡","releaseStartTime":"0","previewImg":"","releaseEndDay":"",
+                     "directionalJson":{"locationId":1,"coverNum":"456334","timeset":["4276"],"behavior":{"behaviorSceneTitle":"App,电商,资讯",
+                    "behaviorStrengthTitle":"不限","behaviorScene":["3880","3881","3882"],"behaviorStrength":["3891"],"behaviorValidityTitle":"7天",
+                    "behaviorValidity":["3884"]},"exposureNum":"14562389"},"fixedPriceDayAmount":1000010.0,"fixedPriceSupport":1,"landingId":"","editUrl":"",
+                     "entrustOperation":0,"needScreenshot":0,"materialImgs":[{"originalImg":"http://cdn.topjoytec.com/gBWQdYeXLqy3Sk4glLxVeg.jpg",
+                    "cutImg":"http://cdn.topjoytec.com/XEyoQ5Y5ksC90LiefiAIpQ.jpg","materialSize":"640*720"}],"releaseEndTime":"24","isOuterUrl":1,
+                     "landingUrls":["ikf.kskdk"],"slogan":"还记得看到了","releaseLocationId":1}
     buildAdv_headers = {"Content-Type": "application/json","ACCESS_TOKEN" : get_token(mobile)}
     buildAdv_resp = requests.post(buildAdv_url, data=json.dumps(buildAdv_data), headers=buildAdv_headers)
     print(buildAdv_resp.text)
