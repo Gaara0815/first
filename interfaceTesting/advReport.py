@@ -6,20 +6,21 @@ import time
 import random
 
 def advRep(token):
+    materials = []
     url = 'http://115.236.35.106:9000/api/n/lightup/adv/request?location=STAKE_COMMENT'
     data = {"appVersion":"2.3.9","deviceWidth":"720","language":"zh-CN","imsi":"869507034526271","advWidth":"720","ua":"Mozilla/5.0 (Linux; Android 8.1.0; vivo Y71 Build/OPM1.171019.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/62.0.3202.84 Mobile Safari/537.36","platform":"0","mac":"02:00:00:00:00:00","operator":"46003","deviceHeight":"1356","osVersion":"8.1.0","vendor":"PD1731","pkgName":"com.topjoytec.jrdl","advHeight":"1356","model":"vivo Y71","networkType":"2","isBoot":"0","androidId":"869507034526271","deviceType":"0","orientation":"0","density":"2","appName":"今日点亮","ip":"","isBreak":"0","imei":"869507034526271"}
     headers = {"Content-Type": "application/json", "ACCESS_TOKEN": token,"PLATFORM": "Android",
                "User-Agent": "Mozilla/5.0 (Linux; Android 8.1.0; vivo Y71 Build/OPM1.171019.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/62.0.3202.84 Mobile Safari/537.36"}
     ret = requests.post(url=url,data=json.dumps(data), headers=headers)
+    print(ret.json())
     code = ret.json()['code']
     print('advReptime=' +str(ret.elapsed.total_seconds()))
-    if(code!=0):
-        print(ret.json())
-        return 0
-    else:
+    if(code==0):
         materials = ret.json()['data']['materials']
         # print(len(materials))#列表长度
         # tradeNo = ret.json()['data']['tradeNo']
+    else:
+        print(ret.json())
     return materials
 
 
@@ -65,8 +66,11 @@ token = "eh2eFy8NFrpbSXKYbw7hoqsrKtSUAMnq"
 # advRep(token)
 #循环请求广告
 start = time.time()
-for one in range(0,3):
+for one in range(0,10):
     # print(one)
+
+
+
     materials = advRep(token)
     if(len(materials)!=0):
         exposureUrls = materials[0]['exposureUrls'][0]
