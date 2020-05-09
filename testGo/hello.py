@@ -10,5 +10,7 @@ def hello():
 a = ['红烧肉炒饭','海鲜炒粉','肉丝拌川','烤鱼饭','扬州炒饭']
 import random
 b = a[random.randint(0,len(a)-1)]
+x = random.randint(0,9)
 print(b)
+print(x)
 # hello()

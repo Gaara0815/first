@@ -1,8 +1,7 @@
 import requests
 import json
 import xlrd
-import json
-import random
+
 #1读取用例
 excelDir = r'D:\mobile.xlsx'
 #打开excel
@@ -12,15 +11,7 @@ workbook = xlrd.open_workbook(excelDir)
 # print(workbook.sheet_names())
 workSheet = workbook.sheet_by_name('Sheet1')
 
-# a = ''
-def getbizId(length):
-         a = ''
-         str = "1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-         for one in range(0, length):
-             number = random.randint(0,61)
-             a = a+(str[number])
-         print(a)
-         return a
+
 
 #测试环境
 def get_token(mobile):
@@ -68,12 +59,16 @@ def buildAdv(mobile):
                      "landingUrls":["ikf.kskdk"],"slogan":"还记得看到了","releaseLocationId":1}
     buildAdv_headers = {"Content-Type": "application/json","ACCESS_TOKEN" : get_token(mobile)}
     buildAdv_resp = requests.post(buildAdv_url, data=json.dumps(buildAdv_data), headers=buildAdv_headers)
+    print(buildAdv_resp.elapsed.total_seconds()) 
     print(buildAdv_resp.text)
 
 #循环创建广告
 for one in range(0,workSheet.nrows):
     m = workSheet.cell(one,1).value
     mobile = str(m)[0:-2]
+
+
+
     print(mobile)
     buildAdv(mobile)
 # buildAdv("13600587905")

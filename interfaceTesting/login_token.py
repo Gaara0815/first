@@ -1,5 +1,17 @@
 import requests
 import json
+import random
+
+
+# a = ''
+def getbizId(length):
+         a = ''
+         str = "1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+         for one in range(0, length):
+             number = random.randint(0,61)
+             a = a+(str[number])
+         print(a)
+         return a
 
 #测试环境
 def get_token(mobile):
