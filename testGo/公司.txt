@@ -49,12 +49,6 @@ csvn8765
 
 
 
-掌格：		正在进行安全检查.		1个点
-有乐通：	正在进行安全检查..		2个点
-uucun：		正在进行安全检查...		3个点
-奇葩：		正在进行安全检查....	4个点
-
-
 1、cd （文件夹名）–查看路径
 2、dir —查看当前路径下的所有文件
 3、unzip ***.zip—–压缩文件到当前目录
@@ -101,8 +95,8 @@ HZXFWLKJ
 1.49726029E9
 
 
-http://115.236.35.106:9538/zgapi/jsp/login.do		admin  admin2 
-http://advert.topjoycloud.com:9538/zgapi/jsp/login.do		admin  admin2zg321
+http://115.236.35.106:4080/zgapi/jsp/login.do		admin  admin2 
+http://advert.topjoycloud.com:9538/zgapi/jsp/login.do		admin  jrdl2019@ky
 
 
 红米   863206037198685
@@ -151,8 +145,6 @@ http://vss.9conn.net/vss/login/Cp_Login.jsp
 
  
 http://pay.jimmey.net/dreamfly/notifyjimmey
-
-GDT没有banner
 
 
 
@@ -204,9 +196,6 @@ jarsigner -verbose -keystore zzzz.keystore -signedjar -aa.apk a.apk zzzz.keystor
 tls_licence_tools.exe gen private_key sig 1400082349 3
 
 
-fxOBICrU.keystore	超级飞侠2018
-fx8vENU.keystore	植物与僵尸冒险王
-fxOBICrU.keystore	猪猪侠
 
 网址：mail.topjoycloud.com
 用户名：zcy@topjoycloud.com
@@ -232,7 +221,6 @@ http://192.168.0.211:3000/zg/lightup-tech/wiki/meitu-api
 
 http://advert.topjoycloud.com:9538/zgapi/jsp/login.do
 
-今日足球：e73a845ece2d8872336f6d3bbeb22c29
 
 
 友盟
@@ -245,25 +233,7 @@ saker@hezi.com hezi310011
 
 http://115.236.35.106:3000/zg/faster-advertiser-ios
 
-
-
-
-
- MD5:  	95:00:DE:7E:0E:F2:C3:F8:DF:F3:0D:84:41:8A:16:3F
-         SHA1: 1E:40:2B:27:3D:EB:F3:96:A1:99:DE:3C:4A:2A:0F:05:26:56:48:03
-         SHA256: BA:2D:FE:3F:0D:BC:EC:2C:77:74:DA:04:70:53:0D:29:2C:E0:9C:E7:81:A7:5F:4F:E3:4E:8D:72:AB:18:6F:C9
 		 
-		 com.topjoytec.jrdl.Ui.Activity.AppStartActivity
-		 
-		 
-		 
-normal-12101457 360渠道包
-
-sl0Jrdl_v01
-
-
-fxYOfKEt 雷霆星战
-fxyHxhT	 消消乐	
 
 
 百度
@@ -289,8 +259,8 @@ http://192.168.0.217:9001/						今日点亮后台测试网址   admin    admin
 https://lightup-op.topjoytec.com/            今日点亮后台正式网址     admin        light_admin
 http://192.168.0.217:8102/#/                                     72投代理商后台测试       密码123
 https://agent.topjoytec.com/#/                                     72投代理商后台正式       
-http://192.168.0.212:9003/#/login          资讯内容接口api平台管理系统 (测试)  admin admin
-https://adv-op.topjoytec.com/#/login      资讯管理系统 （正式 ）         admin        light_adm
+http://115.236.35.106:3501/#/advTotal/AdvertiserTotal			http://192.168.0.212:9003/#/login          资讯内容接口api平台管理系统 (测试)  admin admin
+https://adv-op.topjoytec.com/#/login      资讯管理系统 （正式 ）         admin        light_admin
 
 http://192.168.0.223:9004/#/op/h/index/config		365后台 测试			admin    light_admin	
 https://goods.topjoytec.com/#/						365后台正式 			admin    light_admin
@@ -298,7 +268,7 @@ https://goods.topjoytec.com/#/						365后台正式 			admin    light_admin
 http://testlingjuanminipro.caloinfo.com:10020/miniop/index.html		商家活动工具后台	admin/admin
 http://webmp.caloinfo.com:10020/miniop/index.html#/  				商家活动工具正式  	admin  sjhdgj123
 
-http://dev.caloinfo.cn:13600/#/login		拉活正式后台	admin  jrdl2019@ky		电信账号dxjt 密码dxjt123456
+http://dev.caloinfo.cn:13600/#/login		拉活正式后台	admin  ky2020@72jrdl		电信账号dxjt 密码dxjt123456
 
 
 	
@@ -356,7 +326,7 @@ admin  jrdl2019@ky	AI正式
  
  
  1)http://mirrors.aliyun.com/pypi/simple/ 阿里云
- pip install pandas -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
+ pip install gevent grequests -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
 
 2)https://pypi.mirrors.ustc.edu.cn/simple/  中国科技大学
 

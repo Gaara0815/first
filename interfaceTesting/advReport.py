@@ -4,6 +4,7 @@ from login_token import get_token
 from login_token import getbizId
 import time
 import random
+import grequests
 
 def advRep(token):
     materials = []
@@ -12,7 +13,6 @@ def advRep(token):
     headers = {"Content-Type": "application/json", "ACCESS_TOKEN": token,"PLATFORM": "Android",
                "User-Agent": "Mozilla/5.0 (Linux; Android 8.1.0; vivo Y71 Build/OPM1.171019.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/62.0.3202.84 Mobile Safari/537.36"}
     ret = requests.post(url=url,data=json.dumps(data), headers=headers)
-    print(ret.json())
     code = ret.json()['code']
     print('advReptime=' +str(ret.elapsed.total_seconds()))
     if(code==0):
@@ -66,10 +66,8 @@ token = "eh2eFy8NFrpbSXKYbw7hoqsrKtSUAMnq"
 # advRep(token)
 #循环请求广告
 start = time.time()
-for one in range(0,10):
+for one in range(0,150):
     # print(one)
-
-
 
     materials = advRep(token)
     if(len(materials)!=0):
@@ -82,3 +80,16 @@ for one in range(0,10):
 
 end = time.time()
 print(end-start)
+
+# def allAdv():
+#     materials = advRep(token)
+#     if (len(materials) != 0):
+#         exposureUrls = materials[0]['exposureUrls'][0]
+#         print(exposureUrls)
+#         clickUrls = materials[0]['clickUrls'][0]
+#         showReport(token, exposureUrls)
+#         if (random.randint(0, 9) == 5):
+#             clickReport(token, clickUrls)
+#
+# req_list = [allAdv() for i in range(2)]
+# res_list = grequests.map(req_list)
