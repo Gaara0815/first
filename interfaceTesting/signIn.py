@@ -2,6 +2,10 @@ import requests
 import json
 import xlrd
 
+#使用手机号创建广告测试
+
+
+
 #1读取用例
 excelDir = r'D:\mobile.xlsx'
 #打开excel

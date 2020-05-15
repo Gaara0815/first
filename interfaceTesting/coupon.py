@@ -2,6 +2,8 @@ from login_token import get_token
 import requests
 import json
 
+#post请求测试接口方法
+
 def get_coupon(c_url,c_data,c_headers,c_token):
     cc_headers = json.loads(c_headers)
     cc_headers['ACCESS_TOKEN'] = c_token

@@ -1,10 +1,12 @@
+import grequests
 import requests
 import json
 from login_token import get_token
-from login_token import getbizId
 import time
 import random
-import grequests
+
+#广告请求上报测试
+
 
 def advRep(token):
     materials = []
@@ -66,15 +68,14 @@ token = "eh2eFy8NFrpbSXKYbw7hoqsrKtSUAMnq"
 # advRep(token)
 #循环请求广告
 start = time.time()
-for one in range(0,150):
-    # print(one)
-
+for one in range(0,100):
     materials = advRep(token)
     if(len(materials)!=0):
         exposureUrls = materials[0]['exposureUrls'][0]
         print(exposureUrls)
         clickUrls = materials[0]['clickUrls'][0]
         showReport(token, exposureUrls)
+        # print(clickUrls)
         if(random.randint(0,9) == 5):
             clickReport(token,clickUrls)
 
@@ -82,6 +83,7 @@ end = time.time()
 print(end-start)
 
 # def allAdv():
+#     print(time.time())
 #     materials = advRep(token)
 #     if (len(materials) != 0):
 #         exposureUrls = materials[0]['exposureUrls'][0]
@@ -91,5 +93,5 @@ print(end-start)
 #         if (random.randint(0, 9) == 5):
 #             clickReport(token, clickUrls)
 #
-# req_list = [allAdv() for i in range(2)]
-# res_list = grequests.map(req_list)
+# req_list = [allAdv() for i in range(10)]
+# grequests.map(req_list)
