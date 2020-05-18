@@ -1,3 +1,4 @@
+import time
 #普通测试
 def hello():
     print('hello')
@@ -14,4 +15,5 @@ b = a[random.randint(0,len(a)-1)]
 x = random.randint(0,9)
 print(b)
 print(x)
+print(time.strftime('%Y%m%d',time.localtime(time.time())))
 # hello()

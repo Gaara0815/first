@@ -31,8 +31,6 @@ def get_token(mobile):
     login_resp = requests.post(login_url, data=json.dumps(login_data), headers=login_headers)
     print(login_resp.text)
     token = login_resp.json()['data']['token']
-    # print(data)
-    # token = data.json()['token']
     # print(token)
     return token
 
@@ -57,10 +55,9 @@ def get_HDTtoken(mobile):
     login_resp = requests.post(login_url, data=json.dumps(login_data), headers=login_headers)
     print(login_resp.text)
     token = login_resp.json()['data']['token']
-    # print(data)
-    # token = data.json()['token']
     # print(token)
     return token
 
 # get_token('14444444444')
 # get_HDTtoken('13600587906')
+# getbizId(32)

@@ -3,8 +3,10 @@ from xlutils.copy import copy#复制函数
 from coupon import post_coupon
 from coupon import get_coupon
 from login_token import get_token
+from login_token import getbizId
 import json
 import os
+import time
 
 #使用接口测试用例进行接口测试
 PATH = lambda p: os.path.abspath(os.path.join(os.path.dirname(__file__), p))
@@ -54,6 +56,10 @@ for one in range(1,workSheet.nrows):
 
     # c_data = {cellData}
     c_data = json.loads(cellData)
+    if(one==11):
+        c_data['bizId'] = getbizId(32)
+        c_data['releaseDay'] = time.strftime('%Y-%m-%d',time.localtime(time.time())) + " 开始"
+        c_data['releaseStartDay'] = time.strftime('%Y%m%d',time.localtime(time.time()))
     cc_headers = json.loads(cellHeaders)
     cc_headers['ACCESS_TOKEN'] = token
     if reqMethod == 'post':

@@ -54,7 +54,7 @@ def buildAdv(mobile):
                     "createdTime":2019,"id":1290,"releaseLocationId":1,"suggestPrice":2030},{"updatedTime":2019,"settleMode":"CPM","minPrice":1000,
                     "cptPublication":"","createdTime":2019,"id":1291,"releaseLocationId":1,"suggestPrice":10000}]},"fixedPrice":3010.0,"acquisitionMode":0,
                      "releaseStartDay":"20200410","promoteType":1,"landingType":"0","needOptimizeMaterial":1,"dayMaxAmount":1000000.0,"settleMode":"CPC",
-                     "bizId":getbizId(32),"createModel":"0","advName":"TM咖啡","releaseStartTime":"0","previewImg":"","releaseEndDay":"",
+                     "bizId":getbizId(32),"createModel":"0","advName":"广告创建测试","releaseStartTime":"0","previewImg":"","releaseEndDay":"",
                      "directionalJson":{"locationId":1,"coverNum":"456334","timeset":["4276"],"behavior":{"behaviorSceneTitle":"App,电商,资讯",
                     "behaviorStrengthTitle":"不限","behaviorScene":["3880","3881","3882"],"behaviorStrength":["3891"],"behaviorValidityTitle":"7天",
                     "behaviorValidity":["3884"]},"exposureNum":"14562389"},"fixedPriceDayAmount":1000010.0,"fixedPriceSupport":1,"landingId":"","editUrl":"",
