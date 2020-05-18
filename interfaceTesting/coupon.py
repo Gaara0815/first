@@ -6,15 +6,13 @@ import json
 
 def post_coupon(c_url,c_data,c_headers):
     c_resq = requests.post(c_url,data=json.dumps(c_data),headers=c_headers)
-    res = c_resq.json()
     # print(res)
-    return res
+    return c_resq
 
 def get_coupon(c_url,c_data,c_headers):
     c_resq = requests.get(c_url,params=c_data,headers=c_headers)
-    res = c_resq.json()
     # print(res)
-    return res
+    return c_resq
 
 # token = get_token("13609587905")
 # token = '4ESIFiUBmhENlUbIKsHM9FoP8WOvCUEgzxdJ'

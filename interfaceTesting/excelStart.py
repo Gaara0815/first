@@ -57,9 +57,11 @@ for one in range(1,workSheet.nrows):
     cc_headers = json.loads(cellHeaders)
     cc_headers['ACCESS_TOKEN'] = token
     if reqMethod == 'post':
-        res = post_coupon(cellUrl, c_data, cc_headers)
+        c_resq = post_coupon(cellUrl, c_data, cc_headers)
     else:
-        res = get_coupon(cellUrl, c_data, cc_headers)
+        c_resq = get_coupon(cellUrl, c_data, cc_headers)
+    res = c_resq.json()
+    reqTime = c_resq.elapsed.total_seconds()#请求消耗时间
     print(res)
     code = res['code']#实际结果
     if  code == expectCode:
@@ -68,5 +70,6 @@ for one in range(1,workSheet.nrows):
         excel_res = '不通过'
     workSheetNew.write(one, 9, str(res))  # 写单元格
     workSheetNew.write(one,10,excel_res)#写单元格
+    workSheetNew.write(one, 12, str(reqTime))  # 写单元格
 
 workbookNew.save(PATH(config_path + r'\接口测试结果.xlsx'))
