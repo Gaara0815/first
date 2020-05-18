@@ -69,4 +69,4 @@ for one in range(1,workSheet.nrows):
     workSheetNew.write(one, 9, str(res))  # 写单元格
     workSheetNew.write(one,10,excel_res)#写单元格
 
-workbookNew.save(PATH(config_path + r'\接口测试用例2.xlsx'))
+workbookNew.save(PATH(config_path + r'\接口测试结果.xlsx'))
