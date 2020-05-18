@@ -4,16 +4,22 @@ import json
 
 #post请求测试接口方法
 
-def get_coupon(c_url,c_data,c_headers,c_token):
-    cc_headers = json.loads(c_headers)
-    cc_headers['ACCESS_TOKEN'] = c_token
-    c_resq = requests.post(c_url,data=json.dumps(c_data),headers=cc_headers)
+def post_coupon(c_url,c_data,c_headers):
+    c_resq = requests.post(c_url,data=json.dumps(c_data),headers=c_headers)
+    res = c_resq.json()
+    # print(res)
+    return res
+
+def get_coupon(c_url,c_data,c_headers):
+    c_resq = requests.get(c_url,params=c_data,headers=c_headers)
     res = c_resq.json()
     # print(res)
     return res
 
 # token = get_token("13609587905")
-# c_url = 'http://115.236.35.106:9000/api/product/coupon/receiver'
-# c_data = {"couponId":"184"}
+# token = '4ESIFiUBmhENlUbIKsHM9FoP8WOvCUEgzxdJ'
+# c_url = 'http://192.168.0.211:9000/api/faster/radar/point/data/search'
+# c_data = {"size":50,"pointName":"北京","page":1}
+# print(type(c_data))
 # c_headers = '''{"Content-Type":"application/x-www-form-urlencoded","ACCESS_TOKEN":"test-token"}'''
-# get_coupon(c_url,c_data,c_headers,token)
+# post_coupon(c_url,c_data,c_headers,token)

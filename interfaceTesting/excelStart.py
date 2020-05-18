@@ -1,5 +1,6 @@
 import xlrd
 from xlutils.copy import copy#复制函数
+from coupon import post_coupon
 from coupon import get_coupon
 from login_token import get_token
 import json
@@ -8,10 +9,8 @@ import os
 #使用接口测试用例进行接口测试
 PATH = lambda p: os.path.abspath(os.path.join(os.path.dirname(__file__), p))
 cur_path = os.path.dirname(os.path.realpath(__file__))
-print(cur_path)
 # 获取工程所在的路径，如果加入目录名字切换到该目录下
 config_path = os.path.join(os.path.dirname(cur_path), 'interfaceTesting')
-print(config_path)
 # jme = locatpath = PATH(config_path + r'\接口测试用例.xlsx')
 
 #1读取用例
@@ -39,19 +38,28 @@ workSheetNew = workbookNew.get_sheet(0)
 # token = get_token("13600587905")
 token = '4ESIFiUBmhENlUbIKsHM9FoP8WOvCUEgzxdJ'
 for one in range(1,workSheet.nrows):
+    #是否测试
     isTest = workSheet.cell(one, 11).value
     if isTest == 2:
         continue
+    #请求方式
+    reqMethod = workSheet.cell(one,4).value
     cellUrl = workSheet.cell(one,3).value
     cellData = workSheet.cell(one,6).value
     cellHeaders = workSheet.cell(one,5).value
+    #预期返回数据
     expectRes = json.loads(workSheet.cell(one,8).value)
-    # cellHeaders = '{'+cellHeaders+'}'
 
     expectCode = expectRes['code']#预计结果
 
-    c_data = {cellData}
-    res = get_coupon(cellUrl, cellData, cellHeaders, token)
+    # c_data = {cellData}
+    c_data = json.loads(cellData)
+    cc_headers = json.loads(cellHeaders)
+    cc_headers['ACCESS_TOKEN'] = token
+    if reqMethod == 'post':
+        res = post_coupon(cellUrl, c_data, cc_headers)
+    else:
+        res = get_coupon(cellUrl, c_data, cc_headers)
     print(res)
     code = res['code']#实际结果
     if  code == expectCode:
