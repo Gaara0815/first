@@ -11,7 +11,7 @@ def getbizId(length):
          for one in range(0, length):
              number = random.randint(0,61)
              a = a+(str[number])
-         print(a)
+         # print(a)
          return a
 
 #测试环境72投，今日点亮

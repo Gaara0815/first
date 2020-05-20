@@ -15,5 +15,6 @@ b = a[random.randint(0,len(a)-1)]
 x = random.randint(0,9)
 print(b)
 print(x)
-print(time.strftime('%Y%m%d',time.localtime(time.time())))
+print(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())))
+print('哈'*30)
 # hello()
