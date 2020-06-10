@@ -3,7 +3,7 @@ import time
 def hello():
     print('hello')
     print('hello1')
-    print('哈哈'*100)
+    print('哈'*31)
     print(a[5])
     print(a[5:len(a)-1])
 # a = 'aaa's
