@@ -95,8 +95,7 @@ HZXFWLKJ
 1.49726029E9
 
 
-http://115.236.35.106:4080/zgapi/jsp/login.do		admin  admin2 
-http://advert.topjoycloud.com:9538/zgapi/jsp/login.do		admin  jrdl2019@ky
+
 
 
 红米   863206037198685
@@ -260,7 +259,7 @@ https://lightup-op.topjoytec.com/            今日点亮后台正式网址     admin     
 http://192.168.0.217:8102/#/                                     72投代理商后台测试       密码123
 https://agent.topjoytec.com/#/                                     72投代理商后台正式       
 http://115.236.35.106:3501/#/advTotal/AdvertiserTotal			http://192.168.0.212:9003/#/login          资讯内容接口api平台管理系统 (测试)  admin admin
-https://adv-op.topjoytec.com/#/login      资讯管理系统 （正式 ）         admin        light_admin
+https://adv-op.topjoytec.com/#/login      资讯管理系统 （正式 ）         admin        light_admin2
 
 http://192.168.0.223:9004/#/op/h/index/config		365后台 测试			admin    light_admin	
 https://goods.topjoytec.com/#/						365后台正式 			admin    light_admin
@@ -270,7 +269,12 @@ http://webmp.caloinfo.com:10020/miniop/index.html#/  				商家活动工具正式  	admi
 
 http://dev.caloinfo.cn:13600/#/login		拉活正式后台	admin  ky2020@72jrdl		电信账号dxjt 密码dxjt123456
 
+http://115.236.35.106:4080/zgapi/jsp/login.do		admin  admin2 广告后台
+http://advert.topjoycloud.com:9538/zgapi/jsp/login.do		admin  jrdl2019@ky	
 
+
+http://192.168.0.214:10030/#/op/h/activity/config	admin	admin			扶贫基地
+http://goods.caloinfo.com:10030/#/op/h/activity/config	admin 	sjhdgj123		扶贫基地
 	
 						
 
@@ -279,6 +283,7 @@ http://192.168.0.220:8103				官网测试
 https://www.72tou.com					官网正式
 
 http://192.168.0.218:8108/#/			雷达后台	测试
+https://radar.topjoytec.com/#/			雷达后台	正式
 
 http://192.168.0.219:9003/#/login			72投后台测试
 
