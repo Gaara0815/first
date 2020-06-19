@@ -3,7 +3,7 @@ import time
 import os
 import unittest
 
-#权益后台测试
+#扶贫基地后台测试
 class interestBackground(unittest.TestCase):
     def setUp(self) -> None:#每次都会运行
         self.driver = webdriver.Chrome()
