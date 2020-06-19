@@ -17,41 +17,41 @@ class interestBackground(unittest.TestCase):
         self.driver.find_element_by_xpath('//*[@id="app"]/div/div/button').click()
         self.driver.implicitly_wait(5)
         self.assertTrue(self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[1]/div[1]/div/ul/a[1]').is_enabled())
-        # if driver.find_element_by_xpath('//*[@id="app"]/div/div/div[1]/div[1]/div/ul/a[1]').is_enabled():  # 元素是否激活
-        #     print('登录测试--------》登录成功')
-        #     return True
-        # else:
-        #     print('登录测试--------》登录失败')
-        #     return False
+        if self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[1]/div[1]/div/ul/a[1]').is_enabled():  # 元素是否激活
+            print('登录测试--------》登录成功')
+            # return True
+        else:
+            print('登录测试--------》登录失败')
+            # return False
 
     #添加活动测试
-    def test_addAct(self):
-        self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[1]/input').send_keys('admin')
-        self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/input').send_keys('light_admin')
-        self.driver.find_element_by_xpath('//*[@id="app"]/div/div/button').click()
-        self.driver.implicitly_wait(5)
-        self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[1]/div[1]/div/ul/li[3]/div').click()#营销工具
-        self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[1]/div[1]/div/ul/li[3]/ul/a[1]').click()#优惠活动
-        self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/div/div[1]/button[3]').click()#新建优惠活动
-        self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/div/div[4]/div[2]/div/input').send_keys('自动化测试2')
-        self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/div/div[5]/div[2]/div/input').send_keys('100')
-        self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/div/div[7]/div[2]/div/input').send_keys('2')
-        self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/div/div[8]/div[2]/p[1]/div/input').send_keys('1')
-        self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/div/div[9]/div[2]/div/div[1]/div/input').click()#活动时间
-        self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/div/div[9]/div[2]/div/div[2]/div/div/div[1]/div[2]').click()
-        self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/div/div[9]/div[2]/div/div[2]/div/div/div[2]/div[4]/button[3]').click()#确认
-        self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/div/div[10]/div[2]/div[2]/div/input').send_keys('30')
-        self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/div/div[11]/div[2]/div/div[2]').click()
-        self.driver.implicitly_wait(5)
-        #上传图片
-        os.system(r'E:\textFile\aaa.exe')
-
-        self.driver.implicitly_wait(30)
-        self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/div/div[14]/div[2]/div/input').send_keys('1')
-        self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/div/div[15]/div[2]/div/textarea').send_keys('会佛尔啥计算机')
-        self.driver.implicitly_wait(5)
-        self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/div/div[17]/button[2]').click()
-        self.assertTrue(self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/div/div[1]/button[3]').is_enabled())
+    # def test_addAct(self):
+    #     self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[1]/input').send_keys('admin')
+    #     self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/input').send_keys('light_admin')
+    #     self.driver.find_element_by_xpath('//*[@id="app"]/div/div/button').click()
+    #     self.driver.implicitly_wait(5)
+    #     self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[1]/div[1]/div/ul/li[3]/div').click()#营销工具
+    #     self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[1]/div[1]/div/ul/li[3]/ul/a[1]').click()#优惠活动
+    #     self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/div/div[1]/button[3]').click()#新建优惠活动
+    #     self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/div/div[4]/div[2]/div/input').send_keys('自动化测试2')
+    #     self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/div/div[5]/div[2]/div/input').send_keys('100')
+    #     self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/div/div[7]/div[2]/div/input').send_keys('2')
+    #     self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/div/div[8]/div[2]/p[1]/div/input').send_keys('1')
+    #     self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/div/div[9]/div[2]/div/div[1]/div/input').click()#活动时间
+    #     self.driver.find_element_by_xpath('//*[@id="app"]/div/ditimev/div[2]/div[2]/div/div[9]/div[2]/div/div[2]/div/div/div[1]/div[2]').click()
+    #     self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/div/div[9]/div[2]/div/div[2]/div/div/div[2]/div[4]/button[3]').click()#确认
+    #     self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/div/div[10]/div[2]/div[2]/div/input').send_keys('30')
+    #     self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/div/div[11]/div[2]/div/div[2]').click()
+    #     self.driver.implicitly_wait(5)
+    #     #上传图片
+    #     os.system(r'E:\textFile\aaa.exe')
+    #
+    #     self.driver.implicitly_wait(30)
+    #     self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/div/div[14]/div[2]/div/input').send_keys('1')
+    #     self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/div/div[15]/div[2]/div/textarea').send_keys('会佛尔啥计算机')
+    #     self.driver.implicitly_wait(5)
+    #     self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/div/div[17]/button[2]').click()
+    #     self.assertTrue(self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/div/div[1]/button[3]').is_enabled())
 
 
 
