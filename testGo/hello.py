@@ -16,4 +16,7 @@ print(b)
 print(x)
 print(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())))
 print('哈'*500)
+VERSION_RELEASE = False
+root = 'https://72ad.topjoytec.com' if VERSION_RELEASE else 'http://115.236.35.106:9000'
+print(root)
 # hello()

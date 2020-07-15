@@ -104,7 +104,7 @@ class interestBackground(unittest.TestCase):
     #             time.sleep(3)
     #             # 上传图片
     #             os.system(r'E:\\a.exe')
-    #             self.driver.implicitly_wait(10)
+    #             self.driver.implicitly_wait(10)   
     #             self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/div/div[3]/div[3]/div[1]/button').click()
     #             self.driver.implicitly_wait(5)
     #             self.driver.find_element_by_xpath('/html/body/div[2]/div[2]/div/div/div[2]/div[1]/p[2]/button').click()
