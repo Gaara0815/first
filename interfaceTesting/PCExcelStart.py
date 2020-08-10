@@ -7,8 +7,9 @@ from interfaceTesting.login_token import getbizId
 import json
 import os
 import time
+import hashlib
 
-#PC版雷达接口测试
+#PC版72投接口测试
 PATH = lambda p: os.path.abspath(os.path.join(os.path.dirname(__file__), p))
 cur_path = os.path.dirname(os.path.realpath(__file__))
 # 获取工程所在的路径，如果加入目录名字切换到该目录下
@@ -16,7 +17,7 @@ config_path = os.path.join(os.path.dirname(cur_path), 'interfaceTesting')
 # jme = locatpath = PATH(config_path + r'\接口测试用例.xlsx')
 
 #1读取用例
-excelDir = PATH(config_path + r'\PC版雷达接口测试用例.xlsx')
+excelDir = PATH(config_path + r'\PC版72投接口测试用例.xlsx')
 #打开excel
 # workbook = xlrd.open_workbook(excelDir,formatting_info=True) #保持excel原有格式
 workbook = xlrd.open_workbook(excelDir)
@@ -42,6 +43,10 @@ root = 'https://72ad.topjoytec.com' if VERSION_RELEASE else 'http://115.236.35.1
 login_resp = getlogin_resp("13600587905")
 token = login_resp.json()['data']['token']
 KyToken = login_resp.json()['data']['kyToken']
+password='123456789'
+# s.encode()#变成bytes类型才能加密
+nowPassword = hashlib.md5(password.encode())
+DXBid = 0
 for one in range(1,workSheet.nrows):
     #是否测试
     isTest = workSheet.cell(one, 11).value
@@ -59,10 +64,20 @@ for one in range(1,workSheet.nrows):
 
     # c_data = {cellData}
     c_data = json.loads(cellData)
-    if (one == 5):
+    if (one == 5):#处理广告创建特殊字段
         c_data['bizId'] = getbizId(32)
         c_data['startTime'] = time.strftime('%Y-%m-%d', time.localtime(time.time()))+' 开始'
         c_data['releaseStartDay'] = time.strftime('%Y%m%d', time.localtime(time.time()))
+    if(one == 19):#处理定向包删除特殊字段
+        c_data['id'] = DXBid
+    if (one == 21):  # 处理修改密码特殊字段
+        newpassword = '123456789'
+        # s.encode()#变成bytes类型才能加密
+        newPassword = hashlib.md5(newpassword.encode())
+        c_data['password'] = nowPassword.hexdigest()
+        c_data['newPassword'] = newPassword.hexdigest()
+    if (one == 23):  # 处理账号密码登录特殊字段
+        c_data['password'] = newPassword.hexdigest()
     cc_headers = json.loads(cellHeaders)
     cc_headers['ACCESS_TOKEN'] = token
     cc_headers['KyToken'] = KyToken
@@ -74,12 +89,15 @@ for one in range(1,workSheet.nrows):
     reqTime = c_resq.elapsed.total_seconds()#请求消耗时间
     print(workSheet.cell(one,1).value + str(res))
     code = res['code']#实际结果
+    if (one == 18 and code == 0):#处理定向包创建后返回的字段
+        DXBid = res['data']['id']
     if  code == expectCode:
         excel_res = '通过'
     else:
         excel_res = '不通过'
+    workSheetNew.write(one, 6,json.dumps(c_data))  # 写单元格
     workSheetNew.write(one, 9, str(res))  # 写单元格
     workSheetNew.write(one,10,excel_res)#写单元格
     workSheetNew.write(one, 12, str(reqTime))  # 写单元格
 
-workbookNew.save(PATH(config_path + r'\PC版雷达接口测试结果.xls'))
+workbookNew.save(PATH(config_path + r'\PC版72投接口测试结果.xls'))

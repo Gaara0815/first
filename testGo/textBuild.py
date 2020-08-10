@@ -1,5 +1,6 @@
 import os
 import random
+import time
 
 def getIMEI(length):
     a = ''
@@ -33,14 +34,14 @@ def getMAC(length):
 
 #txt数据处理
 # txtName = "IMEI300.txt"
-txtName = "IDFA30000000.txt"
-# txtName = "MAC29999999.txt"
+# txtName = "IDFA30000000.txt"
+txtName = "MAC10000000.txt"
 f=open(txtName, "a+")
 start = time.time()
-for i in range(0,29999999):
+for i in range(0,10000000):
     # new_context = getIMEI(15) + '\n'
-    new_context = getIDFA(36) + '\n'
-    # new_context = getMAC(17) + '\n'
+    # new_context = getIDFA(36) + '\n'
+    new_context = getMAC(17) + '\n'
     f.write(new_context)
 f.close()
 end = time.time()
