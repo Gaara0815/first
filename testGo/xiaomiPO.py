@@ -35,6 +35,8 @@ class LoginPage():
         self.driver.find_element_by_id('pwd').send_keys(psw)
         # 点击登录
         self.driver.execute_script("document.getElementById('login-button').click()")
+        self.driver.implicitly_wait(10)
+
         #返回首页对象
         return IndexPage(self.driver)
 
@@ -46,13 +48,13 @@ class GoodItemsPage():
     #选择商品
     def pick_item(self):
         # 选择第一个结果
-        self.driver.find_element_by_css_selector('#J_goodsList>div:nth-child(1) a').click()
+        self.driver.find_element_by_xpath('//*[@id="app"]/div[2]/div/div/div[2]/div[3]/div/div[2]/div/div[1]/div[1]/a/img').click()
 
         # 切换到商品详情页窗口
         for handle in self.driver.window_handles:
             self.driver.switch_to.window(handle)
             # 判断切换到目标窗口-判断当前窗口标题是否为：小米10系列立即购买-小米商城
-            if '小米10系列立即购买-小米商城' == self.driver.title:
+            if '小米10 Pro立即购买-小米商城' == self.driver.title:
                 print('切换到目标窗口')
                 #进入到商品详情页
                 return ItemPage(self.driver)
@@ -64,7 +66,7 @@ class ItemPage():
 
     def add_to_cart(self):
         # 点击加入购物车
-        self.driver.find_element_by_css_selector('.sale-btn>a').click()
+        self.driver.find_element_by_xpath('//*[@id="app"]/div[3]/div/div/div/div[2]/div[2]/div[7]/div[1]/a').click()
         return ShopCartPage(self.driver)
 
 #购物车页面
@@ -75,7 +77,7 @@ class ShopCartPage():
     def check_item(self):
         # 检查是否添加成功
         res = self.driver.find_element_by_class_name('goods-info').text
-        assert '小米10 全网通版' in res
+        assert '小米10 Pro 全网通版' in res
         #如果操作涉及页面跳转-需要返回对应的页面对象，如果没有则不需要返回
 
 
@@ -85,18 +87,21 @@ if __name__ == '__main__':
     driver=webdriver.Chrome()
     driver.implicitly_wait(10)
 
-    indexpage=IndexPage(driver)
-
-    loginPage=indexpage.to_login()
-
-    indexpage=loginPage.login('你的账号','你的密码')
-
-    goodItemsPage=indexpage.search_item()
-
-    itemPage=goodItemsPage.pick_item()
-
-    shopCartPage=itemPage.add_to_cart()
-
-    shopCartPage.check_item()
-
+    IndexPage(driver).to_login().login('13600587905','Gaara007').search_item().pick_item().add_to_cart().check_item()
     driver.quit()
+    #
+    # indexpage=IndexPage(driver)
+    #
+    # loginPage=indexpage.to_login()
+    #
+    # indexpage=loginPage.login('你的账号','你的密码')
+    #
+    # goodItemsPage=indexpage.search_item()
+    #
+    # itemPage=goodItemsPage.pick_item()
+    #
+    # shopCartPage=itemPage.add_to_cart()
+    #
+    # shopCartPage.check_item()
+    #
+    # driver.quit()
