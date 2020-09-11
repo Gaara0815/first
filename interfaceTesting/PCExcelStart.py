@@ -46,6 +46,7 @@ KyToken = login_resp.json()['data']['kyToken']
 password='123456789'
 # s.encode()#变成bytes类型才能加密
 nowPassword = hashlib.md5(password.encode())
+#定向包ID
 DXBid = 0
 for one in range(1,workSheet.nrows):
     #是否测试

@@ -1,7 +1,7 @@
 import xlrd
 from xlutils.copy import copy#复制函数
-from coupon import post_coupon
-from coupon import get_coupon
+from interfaceTesting.coupon import post_coupon
+from interfaceTesting.coupon import get_coupon
 from login_token import get_token
 from login_token import getbizId
 import json
@@ -37,8 +37,8 @@ workSheetNew = workbookNew.get_sheet(0)
 # print(workSheet.cell(1,6))#单元数据类型 0 1：字符串 2 3 4 5
 
 #执行
-# token = get_token("13600587905")
-token = '4ESIFiUBmhENlUbIKsHM9FoP8WOvCUEgzxdJ'
+token = get_token("14711111111")
+# token = 'RAnwSwZYyMFzsxYTPagivICTKYL0xthqjFSC'
 for one in range(1,workSheet.nrows):
     #是否测试
     isTest = workSheet.cell(one, 11).value
@@ -78,4 +78,4 @@ for one in range(1,workSheet.nrows):
     workSheetNew.write(one,10,excel_res)#写单元格
     workSheetNew.write(one, 12, str(reqTime))  # 写单元格
 
-workbookNew.save(PATH(config_path + r'\接口测试结果.xlsx'))
+workbookNew.save(PATH(config_path + r'\接口测试结果.xls'))

@@ -8,7 +8,7 @@ import json
 import os
 import time
 
-#使用接口测试用例进行接口测试
+#使用小程序接口测试用例进行接口测试
 PATH = lambda p: os.path.abspath(os.path.join(os.path.dirname(__file__), p))
 cur_path = os.path.dirname(os.path.realpath(__file__))
 # 获取工程所在的路径，如果加入目录名字切换到该目录下

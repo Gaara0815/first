@@ -35,7 +35,6 @@ class LoginPage():
         self.driver.find_element_by_id('pwd').send_keys(psw)
         # 点击登录
         self.driver.execute_script("document.getElementById('login-button').click()")
-        self.driver.implicitly_wait(10)
 
         #返回首页对象
         return IndexPage(self.driver)
@@ -87,7 +86,7 @@ if __name__ == '__main__':
     driver=webdriver.Chrome()
     driver.implicitly_wait(10)
 
-    IndexPage(driver).to_login().login('13600587905','Gaara007').search_item().pick_item().add_to_cart().check_item()
+    IndexPage(driver).to_login().login('13600587905','*').search_item().pick_item().add_to_cart().check_item()
     driver.quit()
     #
     # indexpage=IndexPage(driver)

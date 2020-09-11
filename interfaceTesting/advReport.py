@@ -64,7 +64,7 @@ def clickReport(token,url):
 
 
 # token = get_token('13600587905')
-token = "eh2eFy8NFrpbSXKYbw7hoqsrKtSUAMnq"
+token = "RAnwSwZYyMFzsxYTPagivICTKYL0xthqjFSC"
 # advRep(token)
 #循环请求广告
 start = time.time()

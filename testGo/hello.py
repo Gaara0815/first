@@ -20,8 +20,8 @@ import random
 # VERSION_RELEASE = False
 # root = 'https://72ad.topjoytec.com' if VERSION_RELEASE else 'http://115.236.35.106:9000'
 # print(root)
-s='123456'
+# s='123456'
 # s.encode()#变成bytes类型才能加密
-m= hashlib.md5(s.encode())
-print(m.hexdigest())
-# hello()
+# m= hashlib.md5(s.encode())
+# print(m.hexdigest())
+hello()

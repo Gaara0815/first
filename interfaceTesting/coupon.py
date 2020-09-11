@@ -37,21 +37,22 @@ def get_coupon(c_url,c_data,c_headers):
 #     cc_data['pointName'] = str(one)
 #     post_coupon(c_url, cc_data, cc_headers)
 # token = "kz3MtVQVvDwfSeyed8y0ukbWG8GkUG9tufnh"
-token = get_token("13333333332")
-def getMAC(length):
-    a = ''
-    str = "1234567890abcdef";
-    for one in range(0, length):
-        number = str[random.randint(0, len(str) - 1)]
-        a = a + number
-    return a
-for one in range(0,4000):
-    c_url = 'http://115.236.35.106:9000/api/n/faster/radar/report'
-    c_headers = '''{"Content-Type":"application/json","ACCESS_TOKEN":"test-token"}'''
-    cc_headers = json.loads(c_headers)
-    cc_headers['ACCESS_TOKEN'] = token
-    c_data = '''{"bssid":"000000000000","channel":"1","dbm":"-35","deviceType":"unknown","encryptionType":"","mac":"54ee7594c3e5","radarPointId":383,"ssid":""}'''
-    cc_data = json.loads(c_data)
-    cc_data['mac'] = getMAC(12)
-    post_coupon(c_url, cc_data, cc_headers)
-    print(str(one))
+# token = get_token("13333333332")
+# def getMAC(length):
+#     a = ''
+#     str = "1234567890abcdef";
+#     for one in range(0, length):
+#         number = str[random.randint(0, len(str) - 1)]
+#         a = a + number
+#     return a
+#设备采集
+# for one in range(0,4000):
+#     c_url = 'http://115.236.35.106:9000/api/n/faster/radar/report'
+#     c_headers = '''{"Content-Type":"application/json","ACCESS_TOKEN":"test-token"}'''
+#     cc_headers = json.loads(c_headers)
+#     cc_headers['ACCESS_TOKEN'] = token
+#     c_data = '''{"bssid":"000000000000","channel":"1","dbm":"-35","deviceType":"unknown","encryptionType":"","mac":"54ee7594c3e5","radarPointId":383,"ssid":""}'''
+#     cc_data = json.loads(c_data)
+#     cc_data['mac'] = getMAC(12)
+#     post_coupon(c_url, cc_data, cc_headers)
+#     print(str(one))
