@@ -4,6 +4,7 @@ import allure
 from selenium import webdriver
 import time
 from Page72tou.page72tou import LoginPage,IndexPage,MediaPage,LargePage,AuthenticationPage,PersonalPage,OrientationPage,PeoplePage,LandingPage,AdvPage
+from Page72tou.page72tou import login
 # from selenium.webdriver.support.wait import WebDriverWait
 # from selenium.webdriver.support import expected_conditions as ec  # 引入包
 
@@ -13,12 +14,17 @@ DXBname = '测试定向包'
 RQBname = '测试人群包'
 IMEIname = 'IMEI300'
 Landingname = '测试落地页'
+account = '13600587905'
+password = '123456789'
+CSUrl = 'http://192.168.0.32:9006/#'
+ZSUrl = 'https://72ad.topjoytec.com/#'#使用正式地址需修改登录方法及方法中参数
+server = 1  #1测试，2正式
 #72投PC版
 class Test_72touPC():
 
     def setup(self):
         self.driver = webdriver.Chrome()
-        self.driver.get('http://192.168.0.32:9006/#')
+        self.driver.get(CSUrl)
         self.driver.implicitly_wait(20)
 
     # 函数级结束
@@ -29,7 +35,7 @@ class Test_72touPC():
     def test_1_login(self):
         '''使用正确账号密码登录'''
         loginPage = LoginPage(self.driver)
-        loginPage.login('13600587905','123456789',True)
+        loginPage.login(account,password,True)
         print('使用正确账号密码是否登陆成功')
         assert loginPage.get_title() != 'AI全景式信息投放管理平台'
 
@@ -37,7 +43,7 @@ class Test_72touPC():
     def test_2_login(self):
         '''使用错误账号密码错误'''
         loginPage = LoginPage(self.driver)
-        loginPage.login('13600587905','12345678',False)
+        loginPage.login(account,'12345678',False)
         print('使用错误账号密码是否正常登陆失败')
         assert loginPage.get_title() == 'AI全景式信息投放管理平台'
 
@@ -61,7 +67,7 @@ class Test_72touPC():
     def test_5_buildMediaAdv(self):
         '''创建媒体广告'''
         advPage = AdvPage(self.driver)
-        first_title = advPage.buildMediaAdv(ADVname)
+        first_title = advPage.buildMediaAdv(ADVname,server)
         print('是否成功创建广告:'+ADVname)
         assert first_title == ADVname
 
@@ -140,11 +146,14 @@ class Test_72touPC():
 
 if __name__ == '__main__':
     #生成测试报告
-    pytest.main(['test_72tou.py', '-s', '--alluredir=report/allure_result'])
+    pytest.main(['test_72toupc.py', '-s', '--alluredir=report/allure_result'])
     os.system('allure serve report/allure_result')
 
+    #pyinstaller --console --onefile test_72toupc.py   #打包
+
+
     # # 生成报告数据
-    # pytest test_72toupc.py --alluredir=report/allure_result
+    # pytest  .py --alluredir=report/allure_result
     #
     # # 本地环境生成报告
     # allure serve report/allure_result

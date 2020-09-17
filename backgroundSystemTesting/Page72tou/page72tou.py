@@ -46,6 +46,8 @@ class MediaPage(Page):
             time.sleep(5)
             first_title = self.driver.find_element_by_xpath(
                 '//*[@id="app"]/div/div/div[2]/div[2]/div/div[2]/div[2]/div/div[1]/div[4]/div[2]/table/tbody/tr[1]/td[2]/div/div').text
+        else:
+            first_title = '没有进行删除操作----没有找到要删除的广告'
         return first_title
 
 
@@ -103,6 +105,8 @@ class OrientationPage(Page):
             time.sleep(5)
             first_title = self.driver.find_element_by_xpath(
                 '//*[@id="app"]/div/div/div[2]/div[2]/div/div[2]/div/div/div[1]/div[2]/table/tbody/tr[1]/td[2]/div').text
+        else:
+            first_title = '没有进行删除操作----没有找到要删除的定向包'
         return first_title
 
 
@@ -138,6 +142,8 @@ class PeoplePage(Page):
             time.sleep(5)
             first_name = self.driver.find_element_by_xpath(
                 '//*[@id="app"]/div/div/div[2]/div[2]/div/div/div[2]/div[1]/div[1]/div/div/div[1]/div[2]/table/tbody/tr[1]/td[2]/div').text
+        else:
+            first_title = '没有进行删除操作----没有找到要删除的人群包'
         return first_name
 
     def buildImeiRQB(self,name):
@@ -148,7 +154,7 @@ class PeoplePage(Page):
         self.driver.find_element_by_xpath('/html/body/div[3]/div[2]/div/div/div/form/div[2]/div/div/input').send_keys(name)
         self.driver.find_element_by_xpath('/html/body/div[3]/div[2]/div/div/div/form/div[3]/div/div[2]/div/button').click()
         time.sleep(3)
-        # 上传图片
+        # 上传
         os.system(r'E:\\IMEI300.exe')
         time.sleep(3)
         self.driver.find_element_by_xpath('/html/body/div[3]/div[2]/div/div/div/div[2]/button[1]').click()
@@ -203,6 +209,8 @@ class LandingPage(Page):
             time.sleep(5)
             first_name = self.driver.find_element_by_xpath(
                 '//*[@id="app"]/div/div/div[2]/div[2]/div/div[2]/div/div/div/ul/li[1]/div[1]/p[1]').text
+        else:
+            first_title = '没有进行删除操作----没有找到要删除的落地页'
         return first_name
 
 
@@ -220,7 +228,7 @@ class AdvPage(Page):
         print('点击成功')
         time.sleep(2)
 
-    def buildMediaAdv(self,name):
+    def buildMediaAdv(self,name,server):
         login(self)
         print('登录成功')
         self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/div/div[1]/div/div[2]/div/button').click()
@@ -232,7 +240,11 @@ class AdvPage(Page):
             if '创建/编辑 媒体广告' == self.driver.title:
                 print('切换到目标窗口')
                 self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/div/div[1]/div[1]/div[2]/div[2]/div[1]/div').click()
+                if server == 2:#正式服务器选择第二个媒体
+                    self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/div/div[1]/div[2]/div[2]/div[2]/div[2]/div').click()
+
                 self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/div/div[1]/div[2]/div[2]/button').click()
+                chooseADV(self)
                 self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/div/div[2]/div[2]/div[2]/div[2]/div[5]/div/div/input').send_keys('2')
                 self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/div/div[2]/div[2]/div[2]/button').click()
                 self.driver.find_element_by_xpath(
@@ -269,3 +281,62 @@ class AdvPage(Page):
 def login(self):
     pageBase = Page(self.driver)
     pageBase.login('13600587905', '123456789', True)
+
+#定向条件
+def chooseADV(self):
+    self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div[3]/div/div[1]/div/div/label[2]').click()
+    self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div[3]/div/div[2]/div/div/div[1]/ul/li[2]/div/span').click()
+    self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div[3]/div/div[2]/div/div/div[1]/ul/li[3]/div/span').click()
+    self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div[3]/div/div[2]/div/div/div[1]/ul/li[9]/div/span').click()
+    self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div[3]/div/div[2]/div/div/div[1]/ul/li[10]/div/span').click()
+    self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div[3]/div/div[2]/div/div/div[1]/ul/li[11]/div/span').click()
+    self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div[3]/div/div[5]/div/div/table/tr/td[2]').click()
+    self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div[3]/div/div[5]/div/div/table/tr/td[3]').click()
+    self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div[3]/div/div[5]/div/div/table/tr/td[4]').click()
+    self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div[3]/div/div[5]/div/div/table/tr/td[5]').click()
+    self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div[3]/div/div[6]/div/div/label[2]').click()
+    self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div[3]/div/div[8]/div[1]/div[1]/div[2]/table/tbody/tr[1]/td[1]/div/label/span/input').click()
+    self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div[3]/div/div[8]/div[1]/div[1]/div[2]/table/tbody/tr[2]/td[1]/div/label/span/input').click()
+    self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div[3]/div/div[9]/span').click()
+    self.driver.find_element_by_xpath(
+        '//*[@id="app"]/div/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div[3]/div/div[10]/div[1]/div/div/table/tr/td[3]').click()
+    self.driver.find_element_by_xpath(
+        '//*[@id="app"]/div/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div[3]/div/div[10]/div[1]/div/div/table/tr/td[4]').click()
+    self.driver.find_element_by_xpath(
+        '//*[@id="app"]/div/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div[3]/div/div[10]/div[2]/div/div/table/tr/td[3]').click()
+    self.driver.find_element_by_xpath(
+        '//*[@id="app"]/div/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div[3]/div/div[10]/div[2]/div/div/table/tr/td[4]').click()
+    self.driver.find_element_by_xpath(
+        '//*[@id="app"]/div/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div[3]/div/div[10]/div[3]/div/div/label[2]').click()
+    self.driver.find_element_by_xpath(
+        '//*[@id="app"]/div/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div[3]/div/div[10]/div[4]/div[1]/div/div[1]/ul/li[2]/div/span').click()
+    self.driver.find_element_by_xpath(
+        '//*[@id="app"]/div/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div[3]/div/div[10]/div[4]/div[1]/div/div[1]/ul/li[5]/div/span').click()
+    self.driver.find_element_by_xpath(
+        '//*[@id="app"]/div/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div[3]/div/div[10]/div[4]/div[3]/div/div[1]/ul/li[2]/div/span').click()
+    self.driver.find_element_by_xpath(
+        '//*[@id="app"]/div/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div[3]/div/div[10]/div[4]/div[3]/div/div[1]/ul/li[5]/div/span').click()
+    self.driver.find_element_by_xpath(
+        '//*[@id="app"]/div/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div[3]/div/div[10]/div[5]/div/div/table/tr/td[3]').click()
+    self.driver.find_element_by_xpath(
+        '//*[@id="app"]/div/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div[3]/div/div[10]/div[6]/div/div/table/tr/td[3]').click()
+    self.driver.find_element_by_xpath(
+        '//*[@id="app"]/div/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div[3]/div/div[10]/div[8]/div/div/table/tr/td[5]').click()
+    self.driver.find_element_by_xpath(
+        '//*[@id="app"]/div/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div[3]/div/div[10]/div[9]/div/div/table/tr/td[3]').click()
+    self.driver.find_element_by_xpath(
+        '//*[@id="app"]/div/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div[3]/div/div[10]/div[10]/div/div/table/tr/td[2]').click()
+    self.driver.find_element_by_xpath(
+        '//*[@id="app"]/div/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div[3]/div/div[10]/div[11]/div/div/table/tr/td[2]').click()
+    self.driver.find_element_by_xpath(
+        '//*[@id="app"]/div/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div[3]/div/div[10]/div[12]/div/div/table/tr/td[2]').click()
+    self.driver.find_element_by_xpath(
+        '//*[@id="app"]/div/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div[3]/div/div[10]/div[13]/div/div/label[2]').click()
+    self.driver.find_element_by_xpath(
+        '//*[@id="app"]/div/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div[3]/div/div[10]/div[15]/div/div/table/tr/td[3]').click()
+    self.driver.find_element_by_xpath(
+        '//*[@id="app"]/div/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div[3]/div/div[10]/div[16]/div/div/table/tr/td[3]').click()
+    self.driver.find_element_by_xpath(
+        '//*[@id="app"]/div/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div[3]/div/div[10]/div[17]/div/div/table/tr/td[3]').click()
+    self.driver.find_element_by_xpath(
+        '//*[@id="app"]/div/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div[3]/div/div[10]/div[18]/div/div/table/tr/td[3]').click()
