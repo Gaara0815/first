@@ -16,6 +16,8 @@ IMEIname = 'IMEI300'
 Landingname = '测试落地页'
 account = '13600587905'
 password = '123456789'
+zsaccount = '19817427899'
+zspassword = '7106'
 CSUrl = 'http://192.168.0.32:9006/#'
 ZSUrl = 'https://72ad.topjoytec.com/#'#使用正式地址需修改登录方法及方法中参数
 server = 1  #1测试，2正式
@@ -35,7 +37,10 @@ class Test_72touPC():
     def test_1_login(self):
         '''使用正确账号密码登录'''
         loginPage = LoginPage(self.driver)
-        loginPage.login(account,password,True)
+        if(server == 1):
+            loginPage.login(account, password, True)
+        else :
+            loginPage.login(zsaccount, zspassword, True)
         print('使用正确账号密码是否登陆成功')
         assert loginPage.get_title() != 'AI全景式信息投放管理平台'
 
@@ -43,7 +48,10 @@ class Test_72touPC():
     def test_2_login(self):
         '''使用错误账号密码错误'''
         loginPage = LoginPage(self.driver)
-        loginPage.login(account,'12345678',False)
+        if (server == 1):
+            loginPage.login(account, '12345678', False)
+        else:
+            loginPage.login(zsaccount, '12345678', False)
         print('使用错误账号密码是否正常登陆失败')
         assert loginPage.get_title() == 'AI全景式信息投放管理平台'
 
@@ -146,7 +154,7 @@ class Test_72touPC():
 
 if __name__ == '__main__':
     #生成测试报告
-    pytest.main(['test_72toupc.py', '-s', '--alluredir=report/allure_result'])
+    pytest.main(['test_72toupc.py', '-s', '--alluredir=./report/allure_result'])
     os.system('allure serve report/allure_result')
 
     #pyinstaller --console --onefile test_72toupc.py   #打包
