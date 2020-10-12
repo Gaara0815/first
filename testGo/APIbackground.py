@@ -29,7 +29,7 @@ def start():
         #     print('正常正常正常正常正常正常正常')
         # print('time='+times)
         # sendQQ(times)
-        savePhoto(driver,'1')
+        savePhoto(driver,'a')
         time.sleep(1800)
 
 def start2():
@@ -55,7 +55,7 @@ def start2():
     while True:
         driver.find_element_by_xpath('/html/body/div[1]/div[1]/div/div/div[2]/a[1]/span/span[1]').click()
         time.sleep(10)
-        savePhoto(driver,'2')
+        savePhoto(driver,'b')
         time.sleep(1800)
 
 
@@ -80,13 +80,12 @@ def savePhoto(driver,name):
     try:
         Fail_name = '.\\' + directory_time + '\\' + name + '.png'
         url = driver.save_screenshot(Fail_name)
-        time.sleep(5)
         sendByUser('3417781932')
         setImage(File_Path + name + '.png')
+        print(name)
         # print("%s ：截图成功！！！" % url)
     except BaseException as pic_msg:
         print("截图失败：%s" % pic_msg)
-    time.sleep(2)
 
 
 def sendQQ(msg):
@@ -107,14 +106,14 @@ def sendQQ(msg):
         win32gui.SendMessage(handle, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
 
 
-def main():  # 定义main函数
-    t1 = Thread(target=start)  # 定义线程t1
-    t2 = Thread(target=start2)  # 定义线程t2
-    t1.start()  # 开始运行t1线程
-    t2.start()  # 开始运行t2线程
+# def main():  # 定义main函数
+#     t1 = Thread(target=start)  # 定义线程t1
+#     t2 = Thread(target=start2)  # 定义线程t2
+#     t1.start()  # 开始运行t1线程
+#     t2.start()  # 开始运行t2线程
 
-# start()
+start()
 # start2()
 # sendQQ()
-if __name__ == '__main__':
-    main()
+# if __name__ == '__main__':
+#     main()
