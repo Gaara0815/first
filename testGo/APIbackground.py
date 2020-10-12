@@ -12,14 +12,7 @@ def start():
     driver.find_element_by_xpath('//*[@id="login"]/form/table/tbody/tr[3]/td/input').click()
     time.sleep(3)
     driver.find_element_by_xpath('//*[@id="tabs"]/li[1]').click()
-    # a = driver.find_element_by_xpath('//*[@id="main"]/div[3]/div/div[2]/table[3]/tbody/tr[1]/td').text
-    # print(a)
     time.sleep(2)
-    # driver.find_element_by_xpath('//*[@id="westreg"]/div/div[2]/div[2]/ul/li[4]').click()
-    # time.sleep(2)
-    #
-    # driver.find_element_by_xpath('/html/body/div[1]/div[1]/div/div/div[2]/a[1]').click()
-    # # driver.find_element_by_xpath('//span[text()=''查询'']').click()
     while True:
         a = driver.find_element_by_xpath('//*[@id="main"]/div[3]/div/div[2]/table[3]/tbody/tr[1]/td').text
         times = a[0:len(a) - 2]
@@ -77,7 +70,7 @@ def savePhoto(driver):
         print("新建目录失败：%s" % msg)
     try:
         url = driver.save_screenshot('.\\' + directory_time + '\\' + picture_time + '.png')
-        print("%s ：截图成功！！！" % url)
+        # print("%s ：截图成功！！！" % url)
     except BaseException as pic_msg:
         print("截图失败：%s" % pic_msg)
     time.sleep(2)
