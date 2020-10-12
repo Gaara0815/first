@@ -4,11 +4,13 @@ import os
 import win32gui
 import win32con
 import win32clipboard as w
+from threading import Thread  # 导入线程函数
 # pywin32
 
 def start():
     driver = webdriver.Chrome()
     driver.get('http://apirabbitmq.caloinfo.cn:15672/#/queues/%2F/queue.zgapi.transient')
+    driver.maximize_window()
     driver.find_element_by_xpath('//*[@id="login"]/form/table/tbody/tr[1]/td/input').send_keys(
         'zgapi')
     driver.find_element_by_xpath('//*[@id="login"]/form/table/tbody/tr[2]/td/input').send_keys(
@@ -27,11 +29,12 @@ def start():
         print('time='+times)
         sendQQ(times)
         savePhoto(driver)
-        time.sleep(5)
+        time.sleep(1800)
 
 def start2():
     driver = webdriver.Chrome()
     driver.get('http://advert.topjoycloud.com:9538/zgapi/jsp/login.do')
+    driver.maximize_window()
     driver.find_element_by_xpath('/html/body/div/section[2]/div/form/div[1]/div[3]').click()
     driver.find_element_by_xpath('/html/body/div/section[2]/div/form/div[2]/div[1]/input[1]').send_keys(
         'admin')
@@ -41,22 +44,18 @@ def start2():
     driver.find_element_by_xpath('//*[@id="Login"]').click()
     time.sleep(3)
     driver.find_element_by_xpath('//*[@id="westreg"]/div/div[2]/div[1]/div[1]').click()
-    driver.find_element_by_xpath('//*[@id="westreg"]/div/div[2]/div[2]/ul/li[1]/a').click()
+    time.sleep(1)
+    driver.find_element_by_xpath('//*[@id="westreg"]/div/div[2]/div[2]/ul/li[4]').click()
     time.sleep(3)
-    # driver.find_element_by_xpath('/html/body/div[1]/div[1]/div/div/div[1]/span[1]/span').click()
-    # driver.find_element_by_xpath('/html/body/div[1]/div[1]/div/div/div[1]/span[1]/input[1]').send_keys(
-    #     '山西米奥电子商务有限公司')
-    driver.find_element_by_link_text("查询").click()
-    # driver.find_element_by_xpath('/html/body/div[1]/div[1]/div/div/div[2]/a').click()
-    time.sleep(2)
-    # while True:
-    #     savePhoto(driver)
-    #     time.sleep(60*30)
-
-
-#获取无后缀的图片名称
-def getNosuffixImgName(imgname):
-    return os.path.splitext(imgname)[0]
+    frame = driver.find_element_by_xpath('//*[@id="tt"]/div[2]/div[2]/div/iframe')
+    driver.switch_to.frame(frame);
+    driver.find_element_by_xpath('/html/body/div[1]/div[1]/div/div/div[1]/span[2]/input[1]').send_keys(
+        '山西米奥电子商务有限公司')
+    while True:
+        driver.find_element_by_xpath('/html/body/div[1]/div[1]/div/div/div[2]/a[1]/span/span[1]').click()
+        time.sleep(5)
+        savePhoto(driver)
+        time.sleep(1800)
 
 
 def savePhoto(driver):
@@ -107,7 +106,14 @@ def sendQQ(msg):
         win32gui.SendMessage(handle, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
 
 
+def main():  # 定义main函数
+    t1 = Thread(target=start)  # 定义线程t1
+    t2 = Thread(target=start2)  # 定义线程t2
+    t1.start()  # 开始运行t1线程
+    t2.start()  # 开始运行t2线程
 
-start()
+# start()
 # start2()
 # sendQQ()
+if __name__ == '__main__':
+    main()
