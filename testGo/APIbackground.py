@@ -1,6 +1,10 @@
 from selenium import webdriver
 import time
 import os
+import win32gui
+import win32con
+import win32clipboard as w
+# pywin32
 
 def start():
     driver = webdriver.Chrome()
@@ -21,8 +25,9 @@ def start():
         else:
             print('正常正常正常正常正常正常正常')
         print('time='+times)
+        sendQQ(times)
         savePhoto(driver)
-        time.sleep(1800)
+        time.sleep(5)
 
 def start2():
     driver = webdriver.Chrome()
@@ -49,6 +54,10 @@ def start2():
     #     time.sleep(60*30)
 
 
+#获取无后缀的图片名称
+def getNosuffixImgName(imgname):
+    return os.path.splitext(imgname)[0]
+
 
 def savePhoto(driver):
     # 生成年月日时分秒时间
@@ -69,11 +78,36 @@ def savePhoto(driver):
     except BaseException as msg:
         print("新建目录失败：%s" % msg)
     try:
-        url = driver.save_screenshot('.\\' + directory_time + '\\' + picture_time + '.png')
+        Fail_name = '.\\' + directory_time + '\\' + picture_time + '.png'
+        url = driver.save_screenshot(Fail_name)
+
+
+    # sendQQ(url)
         # print("%s ：截图成功！！！" % url)
     except BaseException as pic_msg:
         print("截图失败：%s" % pic_msg)
     time.sleep(2)
 
+
+def sendQQ(msg):
+    # 窗口名字
+    name = "3417781932"
+    # 将测试消息复制到剪切板中
+    w.OpenClipboard()
+    w.EmptyClipboard()
+    w.SetClipboardData(win32con.CF_UNICODETEXT, msg)
+    w.CloseClipboard()
+    # 获取窗口句柄
+    handle = win32gui.FindWindow(None, name)
+    # while 1==1:
+    if 1 == 1:
+        # 填充消息
+        win32gui.SendMessage(handle, 770, 0, 0)
+        # 回车发送消息
+        win32gui.SendMessage(handle, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
+
+
+
 start()
 # start2()
+# sendQQ()
