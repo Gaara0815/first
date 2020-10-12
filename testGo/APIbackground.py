@@ -5,30 +5,31 @@ import win32gui
 import win32con
 import win32clipboard as w
 from threading import Thread  # 导入线程函数
+from testGo.sendQQ import sendByUser,setImage
 # pywin32
 
 def start():
     driver = webdriver.Chrome()
-    driver.get('http://apirabbitmq.caloinfo.cn:15672/#/queues/%2F/queue.zgapi.transient')
+    driver.get('http://47.96.164.71:15672/#/queues/%2F/ha.adv.queue')
     driver.maximize_window()
     driver.find_element_by_xpath('//*[@id="login"]/form/table/tbody/tr[1]/td/input').send_keys(
-        'zgapi')
+        'lightup')
     driver.find_element_by_xpath('//*[@id="login"]/form/table/tbody/tr[2]/td/input').send_keys(
-        'zgapi@topjoycloud')
+        'lightup')
     driver.find_element_by_xpath('//*[@id="login"]/form/table/tbody/tr[3]/td/input').click()
     time.sleep(3)
-    driver.find_element_by_xpath('//*[@id="tabs"]/li[1]').click()
-    time.sleep(2)
+    # driver.find_element_by_xpath('//*[@id="tabs"]/li[1]').click()
+    # time.sleep(2)
     while True:
-        a = driver.find_element_by_xpath('//*[@id="main"]/div[3]/div/div[2]/table[3]/tbody/tr[1]/td').text
-        times = a[0:len(a) - 2]
-        if(len(times)<2):
-            print('异常异常异常异常异常异常异常')
-        else:
-            print('正常正常正常正常正常正常正常')
-        print('time='+times)
-        sendQQ(times)
-        savePhoto(driver)
+        # a = driver.find_element_by_xpath('//*[@id="main"]/div[3]/div/div[2]/table[3]/tbody/tr[1]/td').text
+        # times = a[0:len(a) - 2]
+        # if(len(times)<2):
+        #     print('异常异常异常异常异常异常异常')
+        # else:
+        #     print('正常正常正常正常正常正常正常')
+        # print('time='+times)
+        # sendQQ(times)
+        savePhoto(driver,'1')
         time.sleep(1800)
 
 def start2():
@@ -53,12 +54,12 @@ def start2():
         '山西米奥电子商务有限公司')
     while True:
         driver.find_element_by_xpath('/html/body/div[1]/div[1]/div/div/div[2]/a[1]/span/span[1]').click()
-        time.sleep(5)
-        savePhoto(driver)
+        time.sleep(10)
+        savePhoto(driver,'2')
         time.sleep(1800)
 
 
-def savePhoto(driver):
+def savePhoto(driver,name):
     # 生成年月日时分秒时间
     picture_time = time.strftime("%Y-%m-%d-%H_%M_%S", time.localtime(time.time()))
     directory_time = time.strftime("%Y-%m-%d", time.localtime(time.time()))
@@ -77,11 +78,11 @@ def savePhoto(driver):
     except BaseException as msg:
         print("新建目录失败：%s" % msg)
     try:
-        Fail_name = '.\\' + directory_time + '\\' + picture_time + '.png'
+        Fail_name = '.\\' + directory_time + '\\' + name + '.png'
         url = driver.save_screenshot(Fail_name)
-
-
-    # sendQQ(url)
+        time.sleep(5)
+        sendByUser('3417781932')
+        setImage(File_Path + name + '.png')
         # print("%s ：截图成功！！！" % url)
     except BaseException as pic_msg:
         print("截图失败：%s" % pic_msg)
