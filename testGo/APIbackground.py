@@ -5,7 +5,7 @@ import win32gui
 import win32con
 import win32clipboard as w
 from threading import Thread  # 导入线程函数
-from testGo.sendQQ import sendByUser,setImage
+from testGo.sendQQ import sendByUser,setImage,setImage2
 # pywin32
 
 def start():
@@ -59,6 +59,74 @@ def start2():
         time.sleep(1800)
 
 
+#雷达设备设置WIFI密码
+def start3():
+    driver = webdriver.Chrome()
+    driver.get('http://192.168.1.1/')
+    driver.maximize_window()
+    # driver.find_element_by_xpath('//*[@id="maincontent"]/div/form/div[1]/fieldset/fieldset/div[1]/div/input').send_keys(
+    #     'admin')
+    driver.find_element_by_xpath('//*[@id="maincontent"]/div/form/div[1]/fieldset/fieldset/div[2]/div/input').send_keys(
+        'admin')
+    driver.find_element_by_xpath('//*[@id="maincontent"]/div/form/div[2]/input[1]').click()
+    time.sleep(3)
+    driver.find_element_by_xpath('/html/body/div/div[2]/ul/li[2]/a').click()
+    time.sleep(1)
+    driver.find_element_by_xpath('/html/body/div/div[2]/ul/li[2]/ul/li[2]/a').click()
+    time.sleep(3)
+    driver.find_element_by_xpath('//*[@id="maincontent"]/div/div/fieldset[1]/table/tbody/tr[3]/td[4]/input[2]').click()
+    time.sleep(3)
+    driver.find_element_by_xpath('//*[@id="tab.wireless.ap.encryption"]/a').click()
+    time.sleep(1)
+    driver.find_element_by_xpath('//*[@id="cbid.wireless.ap.encryption"]').click()
+    time.sleep(1)
+    driver.find_element_by_xpath('//*[@id="cbid.wireless.ap.encryption-psk2"]').click()
+    time.sleep(1)
+    driver.find_element_by_xpath('//*[@id="cbid.wireless.ap._wpa_key"]').send_keys(
+        'kaiyuxinxi2020dl72')
+    driver.find_element_by_xpath('//*[@id="maincontent"]/div/form/div[3]/input[1]').click()
+    time.sleep(3)
+    driver.find_element_by_xpath('//*[@id="tab.wireless.ap.encryption"]/a').click()
+    driver.find_element_by_xpath('//*[@id="cbi-wireless-ap-_wpa_key"]/div/img').click()
+    password = driver.find_element_by_xpath('//*[@id="cbid.wireless.ap._wpa_key"]').get_attribute('value')
+    if(password == 'kaiyuxinxi2020dl72'):
+        print('修改成功')
+    else:
+        print('修改失败')
+    picture_time = time.strftime("%Y-%m-%d-%H_%M_%S", time.localtime(time.time()))
+    print(picture_time)
+    driver.quit()
+
+
+
+    # time.sleep(2)
+
+
+def start4():
+    driver = webdriver.Chrome()
+    driver.get('http://47.99.48.199:8081/clusters/kafka_cluster/consumers/api.consume/topic/api-advert/type/KF')
+    driver.maximize_window()
+    while True:
+        driver.refresh()
+        photo = savePhoto(driver,'start4')
+        print('start4='+photo)
+        # sendByUser('3417781932')
+        # setImage(photo)
+        time.sleep(30)
+
+
+def start5():
+    driver = webdriver.Chrome()
+    driver.get('http://47.99.48.199:8081/clusters/kafka_cluster/topics')
+    driver.maximize_window()
+    while True:
+        driver.refresh()
+        photo = savePhoto(driver, 'start5')
+        print('start5=' + photo)
+        # sendByUser('1358099456')
+        # setImage2(photo)
+        time.sleep(30)
+
 def savePhoto(driver,name):
     # 生成年月日时分秒时间
     picture_time = time.strftime("%Y-%m-%d-%H_%M_%S", time.localtime(time.time()))
@@ -78,11 +146,12 @@ def savePhoto(driver,name):
     except BaseException as msg:
         print("新建目录失败：%s" % msg)
     try:
-        Fail_name = '.\\' + directory_time + '\\' + name + '.png'
+        Fail_name = '.\\' + directory_time + '\\' + picture_time+name + '.png'
         url = driver.save_screenshot(Fail_name)
-        sendByUser('3417781932')
-        setImage(File_Path + name + '.png')
-        print(name)
+        photo = File_Path + picture_time +name + '.png'
+        return photo
+        # sendByUser('3417781932')
+        # setImage(File_Path + picture_time + '.png')
         # print("%s ：截图成功！！！" % url)
     except BaseException as pic_msg:
         print("截图失败：%s" % pic_msg)
@@ -106,14 +175,16 @@ def sendQQ(msg):
         win32gui.SendMessage(handle, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
 
 
-# def main():  # 定义main函数
-#     t1 = Thread(target=start)  # 定义线程t1
-#     t2 = Thread(target=start2)  # 定义线程t2
-#     t1.start()  # 开始运行t1线程
-#     t2.start()  # 开始运行t2线程
+def main():  # 定义main函数
+    t1 = Thread(target=start4)  # 定义线程t1
+    t2 = Thread(target=start5)  # 定义线程t2
+    t1.start()  # 开始运行t1线程
+    t2.start()  # 开始运行t2线程
 
-start()
+# start()
 # start2()
+# start3()
 # sendQQ()
-# if __name__ == '__main__':
-#     main()
+# start4()
+if __name__ == '__main__':
+    main()

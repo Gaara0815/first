@@ -23,11 +23,10 @@ print(x)
 # VERSION_RELEASE = False
 # root = 'https://72ad.topjoytec.com' if VERSION_RELEASE else 'http://115.236.35.106:9000'
 # print(root)
-# s='123456789'
-# s.encode()#变成bytes类型才能加密
-# m= hashlib.md5(s.encode())
-# print(m)
-# print(m.hexdigest())
+s='秘乐短视频'
+s.encode()#变成bytes类型才能加密
+m= hashlib.md5(s.encode())
+print(m.hexdigest())
 # hello()
 
 # 202cb962ac59075b964b07152d234b70

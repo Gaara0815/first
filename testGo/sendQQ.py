@@ -29,6 +29,17 @@ def setImage(imgpath):
         w.EmptyClipboard()
         w.SetClipboardData(win32con.CF_BITMAP, aString)
         w.CloseClipboard()
+# 发送图片
+def setImage2(imgpath):
+    im = Image.open(imgpath)
+    im.save('2.bmp')
+    aString = windll.user32.LoadImageW(0, r"2.bmp", win32con.IMAGE_BITMAP, 0, 0, win32con.LR_LOADFROMFILE)
+
+    if aString != 0:  ## 由于图片编码问题  图片载入失败的话  aString 就等于0
+        w.OpenClipboard()
+        w.EmptyClipboard()
+        w.SetClipboardData(win32con.CF_BITMAP, aString)
+        w.CloseClipboard()
 
 # 定位QQ窗口，进行昵称备注的搜索，再回车弹出此好友窗口
 def searchByUser(uname):
@@ -62,6 +73,7 @@ def closeByUser(uname):
 # searchByUser('3417781932')
 # setText('~~~给GANGAN神说个事情~~~')
 # sendByUser('3417781932')
+# setText('~~~给GANGAN神说个事情~~~')
 # time.sleep(3)
 
 
