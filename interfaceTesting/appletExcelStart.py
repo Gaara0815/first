@@ -1,9 +1,7 @@
 import xlrd
 from xlutils.copy import copy#复制函数
-from coupon import post_coupon
-from coupon import get_coupon
-from login_token import get_token
-from login_token import getbizId
+from coupon import *
+from login_token import *
 import json
 import os
 import time

@@ -8,7 +8,7 @@ import json
 import os
 import time
 import hashlib
-
+from interfaceTesting.WorkManager import Workmanager
 #PC版72投接口测试
 PATH = lambda p: os.path.abspath(os.path.join(os.path.dirname(__file__), p))
 cur_path = os.path.dirname(os.path.realpath(__file__))
@@ -40,19 +40,25 @@ VERSION_RELEASE = False
 root = 'https://72ad.topjoytec.com' if VERSION_RELEASE else 'http://115.236.35.106:9000'
 
 #执行
-login_resp = getlogin_resp("13600587905")
-token = login_resp.json()['data']['token']
-KyToken = login_resp.json()['data']['kyToken']
+# login_resp = getlogin_resp("13600587905")
+# token = login_resp.json()['data']['token']
+# KyToken = login_resp.json()['data']['kyToken']
+token   = 'P1LDMfsJEtxQEAMwtm6EThxluyqfsIU9nWJ3'
+KyToken =  'kU1eafimzckM4FkshaobrdqeHp1FRx6Uk9S9'
 password='123456789'
 # s.encode()#变成bytes类型才能加密
 nowPassword = hashlib.md5(password.encode())
 #定向包ID
 DXBid = 0
-for one in range(1,workSheet.nrows):
+# for one in range(1,workSheet.nrows):
+work_manager = WorkManager(workSheet.nrows, 2)  # 或者work_manager =  WorkManager(10000, 20)
+work_manager.wait_allcomplete()
+def startTest(one):
+    one = one+1
     #是否测试
     isTest = workSheet.cell(one, 11).value
     if isTest == 2:
-        continue
+        return
     #请求方式
     reqMethod = workSheet.cell(one,4).value
     cellUrl = root+workSheet.cell(one,3).value

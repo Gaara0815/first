@@ -64,19 +64,26 @@ def clickReport(token,url):
 
 
 # token = get_token('13600587905')
-token = "RAnwSwZYyMFzsxYTPagivICTKYL0xthqjFSC"
+token = "P1LDMfsJEtxQEAMwtm6EThxluyqfsIU9nWJ3"
 # advRep(token)
 #循环请求广告
 start = time.time()
-for one in range(0,100):
+for one in range(0,500):
+    time.sleep(0.5)
     materials = advRep(token)
+    if(one == 0):
+        print(materials)
+
     if(len(materials)!=0):
         exposureUrls = materials[0]['exposureUrls'][0]
         print(exposureUrls)
         clickUrls = materials[0]['clickUrls'][0]
+        time.sleep(0.6)
         showReport(token, exposureUrls)
         # print(clickUrls)
-        if(random.randint(0,9) == 5):
+        # if(random.randint(0,9) == 5):
+        if (random.randrange(100) < 20):
+            time.sleep(1)
             clickReport(token,clickUrls)
 
 end = time.time()

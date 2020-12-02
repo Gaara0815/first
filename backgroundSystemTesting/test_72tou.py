@@ -16,6 +16,7 @@ class Test_caseqq():
     #账号密码登录
     def test_1_login(self):
         login(self,'13600587905','123456789')
+
         assert self.driver.find_element_by_xpath('//*[@id="app"]/div/div/div[1]/div/div/div[1]/div/span').is_displayed()
 
     # 账号密码登录（失败）

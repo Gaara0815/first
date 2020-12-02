@@ -32,6 +32,7 @@ def start():
         savePhoto(driver,'a')
         time.sleep(1800)
 
+#
 def start2():
     driver = webdriver.Chrome()
     driver.get('http://advert.topjoycloud.com:9538/zgapi/jsp/login.do')
@@ -58,6 +59,18 @@ def start2():
         savePhoto(driver,'b')
         time.sleep(1800)
 
+def start11():
+    driver = webdriver.Chrome()
+    driver.get('http://192.168.0.32:9006/#')
+    driver.implicitly_wait(5)
+    driver.find_element_by_xpath('//*[@id="app"]/div/div/p[2]').click()
+    driver.find_element_by_xpath('//*[@id="app"]/div/div/div[1]/input').send_keys('13600587905')
+    driver.find_element_by_xpath('//*[@id="app"]/div/div/div[2]/input').send_keys('123' + '\n')
+    # self.driver.find_element_by_xpath('//*[@id="app"]/div/div/button').click()
+    driver.implicitly_wait(10)
+    texts = driver.switch_to.alert.text
+    print(texts)
+    assert texts == '密码不正确，请重新输入'
 
 #雷达设备设置WIFI密码
 def start3():
@@ -175,16 +188,17 @@ def sendQQ(msg):
         win32gui.SendMessage(handle, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
 
 
-def main():  # 定义main函数
-    t1 = Thread(target=start4)  # 定义线程t1
-    t2 = Thread(target=start5)  # 定义线程t2
-    t1.start()  # 开始运行t1线程
-    t2.start()  # 开始运行t2线程
+# def main():  # 定义main函数
+#     t1 = Thread(target=start4)  # 定义线程t1
+#     t2 = Thread(target=start5)  # 定义线程t2
+#     t1.start()  # 开始运行t1线程
+#     t2.start()  # 开始运行t2线程
 
 # start()
 # start2()
 # start3()
 # sendQQ()
 # start4()
-if __name__ == '__main__':
-    main()
+start11()
+# if __name__ == '__main__':
+#     main()
